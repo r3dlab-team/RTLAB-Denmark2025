@@ -7,10 +7,11 @@ Before beginning active reconnaissance, it’s smart to preserve access by injec
 This provides a fallback in case the initial session is lost or crashes.
 
 ### Process Discovery
-1. In the Havoc Client, open the active Beacon tab.
+1. In the Havoc Client, Right-click on the Beacon to open the Interaction tab.
 2. Navigate to: Explorer > Process List
 3. A window will show the currently running processes on the target:
-4. Identify a suitable 64-bit user-mode process (e.g., `explorer.exe`, `notepad.exe`, `dllhost.exe`, `werfault.exe`, `sihost.exe`).
+4. Identify a suitable 64-bit user-mode process that belongs to "LAB\ricksmith":  
+(e.g., `explorer.exe`, `notepad.exe`, `dllhost.exe`, `werfault.exe`, `sihost.exe`).
 5. Note the PID (Process ID)
 
 ![image](https://github.com/user-attachments/assets/7a5ce666-2613-41e0-913e-77142fa4c988)
@@ -20,9 +21,7 @@ From the Beacon tab, run:
 ```beacon
 shellcode inject x64 PID /home/kali/Havoc/obfuscator/beacon.bin
 ```
-Replace <PID> with the chosen target’s process ID.
-
-Ensure the `beacon.bin` used matches your current listener.
+Replace `PID` with the chosen target’s process ID.
 
 ![image](https://github.com/user-attachments/assets/e77adfde-982a-4b49-a931-2720bccda7f5)
 
@@ -32,7 +31,7 @@ This creates a second active Beacon, adding persistence and resilience to your o
 With at least one stable Beacon running, we can begin active reconnaissance inside the target environment to gather key details on user context, domain, and network layout.
 
 ### whoami
-Get the info from `whoami /all` without starting the `cmd.exe` process
+Get similar info like the Windows command `whoami /all`, but without starting the `cmd.exe` process
 ```
 whoami
 ```
@@ -58,23 +57,18 @@ The commands above provide a solid foundation for identifying possible privilege
 Before engaging with post-exploitation or Beacon tasking, operators should ensure that the required toolset is in place and accessible.
 
 ## Required Tools Directory
-All custom binaries for this exercise should be in:
-```bash
-/home/kali/tools/
-```
-1. SharpHound:
-   Ensure `SharpHound.exe` is present in the directory:
-```
-/home/kali/tools/SharpHound.exe
-```
-2. GhostPack Compiled Binaries:
+All custom binaries for this exercise should be in the `/home/kali/tools/` folder:
+1. SharpHound
+2. GhostPack Compiled Binaries: (Let's clone the repository!)
 
-Let's Clone the GhostPack binary repository, but first please open a new terminal:
+Open a new terminal and run the following command:
 
 ```
 cd /home/kali/tools/
 git clone https://github.com/r3motecontrol/Ghostpack-CompiledBinaries.git
 ```
+<img width="700" height="500" alt="image" src="https://github.com/user-attachments/assets/40a8a06e-b92d-4593-9259-f51c1b42cac6" />
+
 This repo includes:
 > - [Rubeus](https://github.com/GhostPack/Rubeus) (Kerberos abuse)
 > - [Seatbelt](https://github.com/GhostPack/Seatbelt) (host recon) 
@@ -118,7 +112,7 @@ pwd
 ```
 4. Inline-Execute the Sharphound.exe:
 ```
-dotnet inline-execute /home/kali/tools/SharpHound.exe -c ALL
+dotnet inline-execute /home/kali/tools/SharpHound/SharpHound.exe -c ALL
 ```
 The dotnet inline-execute command in Havoc allows for in-memory execution of .NET assemblies directly from your Beacon, without writing the binary to disk.
 
@@ -164,24 +158,34 @@ With the SharpHound `.zip` file retrieved from the target, we now proceed to Blo
 1. Start Bloodhound on a new Terminal tab:
 ```bash
 bloodhound 
-```
+```  
+
+<img width="1570" height="1285" alt="image" src="https://github.com/user-attachments/assets/64663672-8156-4cf4-be5d-171b01df4fd7" />
+
+
 2. Access the BloodHound GUI (Web Interface)
 ```
 http://127.0.0.1:8080/ui/login
 ```
 3. Enter the following credentials to log in:
 - Email Address `admin`
-- password: `*********`
+- password: `Credentials will be provided during the presentation`
 
 ![image](https://github.com/user-attachments/assets/5d4ea8a0-6413-4f5c-8260-e920a8f7aa5a)
 
 ### Step 2: Ingest Collected Data
-1. Navigate to Administration > File Ingest.
-1. Click "Upload File(s)" in the top-right corner.
-2. Select the `.zip` file downloaded from SharpHound and click Upload
-3. Wait for the import to complete
+1. Click on "start by uploading your data":
+<img width="1749" height="1181" alt="image" src="https://github.com/user-attachments/assets/847ab47d-5b05-4e93-b70d-37b897396f18" />
 
-![image](https://github.com/user-attachments/assets/3935941d-f6cd-471b-8cf5-2d35dce8ca09)
+OR
+1. Navigate to Administration
+2. File Ingest
+3. Click "Upload File(s)" in the top-right corner.
+4. Select the `.zip` file downloaded from SharpHound
+5. Click Upload
+6. Wait for the import to complete and the file to be ingested!
+
+<img width="2558" height="1605" alt="image" src="https://github.com/user-attachments/assets/55c545ee-6f73-46eb-95c7-3bba8a389c29" />
 
 ## Interpreting the Graphs
 

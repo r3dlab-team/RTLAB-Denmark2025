@@ -59,7 +59,7 @@ A listener acts as the endpoint for compromised systems (Beacons), allowing them
 
 ### Creating a Listener
 1. Navigate to: View > Listeners
-2. Click the ADD button in the Listeners window.
+2. Click the ADD button at the bottom of the Listeners window.
 ![image](https://github.com/user-attachments/assets/b8be2d9e-eb5f-4ee5-8cbc-756619b76cf8)
 
 3. Fill in the required fields:

@@ -7,8 +7,8 @@
 
 <img width="1780" height="1017" alt="image" src="https://github.com/user-attachments/assets/67a26ae3-6da6-47eb-a778-6fc1b19c256c" />
 
-4. Find your assigned Kali Box machine (Kali_labX) and click on Connect:
-> **`X` will represent your participant number (1 - 10) on the assigned lab machine on the respective range (1 - 4)** 
+4. Find your assigned Kali Box machine `Kali_labX` and click on Connect:
+> **`X` represents your participant number (1 - 10) on the assigned lab machine on the respective range (1 - 4)** 
 
 <img width="1387" height="1202" alt="image" src="https://github.com/user-attachments/assets/9c02b808-d142-4aaf-ac79-1709349365aa" />
 
@@ -25,6 +25,7 @@ xfreerdp3 /u:ricksmith /p:Spring2025! /v:10.10.X.20 /cert:ignore
 > **IP:** `10.10.X.20`  
 > **User:** `ricksmith`  
 > **Password:** `Spring2025!`  
+> **`X` represents your participant number (1 - 10) on the assigned lab machine on the respective range (1 - 4)** 
 
 ![image](https://github.com/user-attachments/assets/2595d9cd-e127-4af2-bc17-78fa9cc4b5a5)
 

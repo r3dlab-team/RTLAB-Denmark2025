@@ -17,3 +17,4 @@ Key areas of focus include misconfigurations in Active Directory Certificate Ser
 3. Enumeration and Reconnaissance
 4. Service Misuse and Exploitation       
 5. Privilege Escalation
+6. Lateral Movement

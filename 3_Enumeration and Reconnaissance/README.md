@@ -1,34 +1,7 @@
 # 3 -  Enumeration and Reconnaissance
 
-## Shellcode Injection for Redundancy
-
-Before beginning active reconnaissance, it’s smart to preserve access by injecting the Beacon shellcode into another process 
-
-This provides a fallback in case the initial session is lost or crashes.
-
-### Process Discovery
-1. In the Havoc Client, Right-click on the Beacon to open the Interaction tab.
-2. Navigate to: Explorer > Process List
-3. A window will show the currently running processes on the target:
-4. Identify a suitable 64-bit user-mode process that belongs to "LAB\ricksmith":  
-(e.g., `explorer.exe`, `notepad.exe`, `dllhost.exe`, `werfault.exe`, `sihost.exe`).
-5. Note the PID (Process ID)
-
-![image](https://github.com/user-attachments/assets/7a5ce666-2613-41e0-913e-77142fa4c988)
-
-### Inject Shellcode into Target Process
-From the Beacon tab, run:
-```beacon
-shellcode inject x64 PID /home/kali/Havoc/obfuscator/beacon.bin
-```
-Replace `PID` with the chosen target’s process ID.
-
-![image](https://github.com/user-attachments/assets/e77adfde-982a-4b49-a931-2720bccda7f5)
-
-This creates a second active Beacon, adding persistence and resilience to your operation.
-
-## Basic Active Directory Enumeration from Beacon
-With at least one stable Beacon running, we can begin active reconnaissance inside the target environment to gather key details on user context, domain, and network layout.
+## Basic Active Directory Enumeration via Havoc Beacon
+We can begin active reconnaissance inside the target environment to gather key details on user context, domain, and network layout.
 
 ### whoami
 Get similar info like the Windows command `whoami /all`, but without starting the `cmd.exe` process
@@ -54,7 +27,7 @@ domainenum
 The commands above provide a solid foundation for identifying possible privilege escalation paths and lateral movement decisions, but there is more.
 
 ## Operator Tooling Setup
-Before engaging with post-exploitation or Beacon tasking, operators should ensure that the required toolset is in place and accessible.
+Before starting with post-exploitation or Beacon tasking, operators should ensure that the required toolset is in place and accessible.
 
 ## Required Tools Directory
 All custom binaries for this exercise should be in the `/home/kali/tools/` folder:

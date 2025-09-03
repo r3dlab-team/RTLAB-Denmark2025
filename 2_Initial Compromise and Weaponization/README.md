@@ -60,9 +60,11 @@ A listener acts as the endpoint for compromised systems (Beacons), allowing them
 ### Creating a Listener
 1. Navigate to: View > Listeners
 2. Click the ADD button at the bottom of the Listeners window.
+
 ![image](https://github.com/user-attachments/assets/b8be2d9e-eb5f-4ee5-8cbc-756619b76cf8)
 
-3. Fill in the required fields:
+4. Fill in the required fields:
+   
 <img width="400" height="700" alt="image" src="https://github.com/user-attachments/assets/f5a1511f-fc17-46d2-bb79-265d7e2f5bb2" /> 
 
 - Name: `any name you like`
@@ -79,9 +81,10 @@ We are going to create a raw Windows shellcode binary (beacon.bin) that initiate
 
 ### Creating a Beacon (beacon.bin)
 1. Navigate to: Attacks > Payloads
+
 ![image](https://github.com/user-attachments/assets/b195ce9a-1931-4c98-9003-ec232bdcf281)
 
-2. In the payload generation window:
+3. In the payload generation window:
 - Listener: `https`
 - Arch: `x64`
 - Format: `Windows Shellcode`
@@ -152,6 +155,7 @@ $a.SetValue([void]0, $true)
 Paste the AMSI bypass code into the PowerShell_ISE command pane and press ENTER to execute it.
 
 5. Copy, paste and execute the loader:
+
 ![image](https://github.com/user-attachments/assets/bbb273e7-155a-4e37-b97e-1d7abb5e5fe2)
 
 Once AMSI is bypassed, paste the full contents of `beacon_loader_obfuscated.ps1` into the PowerShell_ISE command pane and hit Enter.
@@ -176,5 +180,6 @@ If it appears healthy, the communication with the target is established.
 help
 ```
 This will list all available post-exploitation commands and modules.
+
 ![image](https://github.com/user-attachments/assets/8904aac7-6829-4829-8351-19c87ba3a693)
 

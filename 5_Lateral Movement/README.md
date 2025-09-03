@@ -1,4 +1,4 @@
-# 6 - Lateral Movement
+# 5 - Lateral Movement
 With the credentials recovered from secretsdump `or cracked from Kerberoasting`, we begin lateral movement:
 
 # Password Spray & Weak Credential Exploitation

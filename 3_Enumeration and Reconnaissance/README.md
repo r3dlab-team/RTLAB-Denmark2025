@@ -202,14 +202,14 @@ Here we are searching for users/groups with exploitable rights.
 
 Focus especially on users in the `Domain Users` group with elevated rights!
 
-Usually we look for:
+Usually, we look for:
 > - `GenericAll` on high-priv targets
 > - `ForceChangePassword` (for password reset without knowing the current one)
 > - `WriteDacl` for backdooring objects
 > - `ADCSESC1` for Active Directory certificate templates vulnerabilities
 > - `CanRDP` for Lateral Movement
 
-## EXTRAT : Shellcode Injection for Redundancy
+## EXTRA : Shellcode Injection for Redundancy
 
 Before beginning active reconnaissance, it’s smart to preserve access by injecting the Beacon shellcode into another process 
 

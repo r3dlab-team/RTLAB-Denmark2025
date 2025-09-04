@@ -1,12 +1,11 @@
 # 5 - Lateral Movement
-With the credentials recovered from secretsdump `or cracked from Kerberoasting`, we begin lateral movement:
 
 # Password Spray & Weak Credential Exploitation
 
 Password spraying is a low-noise, high-success technique that tests one password across many users, often exploiting common patterns and weak password policies.
 
 ## Usernames list
-- Usernames were extracted based on the Havoc's BOF `domainenum` and have been saved for convenience at:
+- Usernames were extracted based on Havoc's BOF `domainenum` and have been saved for convenience at:
 ```
 /home/kali/password_spray/usernames.txt
 ```
@@ -77,7 +76,7 @@ netexec smb 10.10.X.10 -u 'usernames.txt' -p 'passwords.txt' -d lab.local -t 5 -
 
 Once done, you can confirm the results using `cat` and `grep` commands:
 ```bash
-cat pass_weep | grep Pwn3d
+cat pass_sweep | grep Pwn3d!
 ```
 
 ![image](https://github.com/user-attachments/assets/07e8b1b2-0e0b-412d-aa21-d1e12f0aa8fe)

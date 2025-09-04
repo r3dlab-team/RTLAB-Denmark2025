@@ -69,7 +69,7 @@ A listener acts as the endpoint for compromised systems (Beacons), allowing them
 
 - Name: `any name you like`
 - Payload: `http` or `https`
-- Hosts: `10.10.1.200`, just click ADD and it will autopopulate
+- Hosts: `10.10.X.200`, click ADD and it will autopopulate
 
 4. Click `Save` to activate the listener.
 

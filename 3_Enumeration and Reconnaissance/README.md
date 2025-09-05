@@ -209,6 +209,17 @@ Usually, we look for:
 > - `ADCSESC1` for Active Directory certificate templates vulnerabilities
 > - `CanRDP` for Lateral Movement
 
+## Test also these other custom queries:  
+
+> - Password-like string in description
+```
+MATCH (u:User) WHERE u.description =~ '(?=.*?[A-Za-z])(?=.*?[0-9])(?=.*?[^\\w\\s]).{6,}' RETURN u
+```
+> - Users with active sessions  
+```
+MATCH p = (c:Computer)-[:HasSession]->(n) return p
+```
+
 ## EXTRA : Shellcode Injection for Redundancy
 
 Before beginning active reconnaissance, it’s smart to preserve access by injecting the Beacon shellcode into another process 

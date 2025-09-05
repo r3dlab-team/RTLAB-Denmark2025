@@ -20,7 +20,7 @@
 
 Start the RDP session using the command below:  
 ```bash 
-xfreerdp3 /u:ricksmith /p:Spring2025! /v:10.10.X.20 /cert:ignore
+xfreerdp3 /u:ricksmith /p:Spring2025! /v:10.10.X.20 /cert:ignore /workarea
 ```    
 > **IP:** `10.10.X.20`  
 > **User:** `ricksmith`  

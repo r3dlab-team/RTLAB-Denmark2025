@@ -181,6 +181,10 @@ After extracting service account hashes with `Rubeus` and cracking them with `Ha
 
 Let's use `Netexec` along with the credentials to test if the clear-text passwords are valid logins:
 
+```bash
+netexec smb 10.10.X.10 -u 'user' -p 'password' --dns-tcp --dns-server '10.10.X.10' -d 'lab.local'
+```
+
 ![image](https://github.com/user-attachments/assets/639435c1-eedb-4913-a252-9e1abd7e59e3)
 
 
